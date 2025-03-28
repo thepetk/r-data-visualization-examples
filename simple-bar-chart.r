@@ -1,6 +1,9 @@
 library(ggplot2)
 
-kpop_music_group_heights <- read.csv("resources/kpop_heights.csv")
+kpop_music_group_heights <- read.table("resources/kpop_heights.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE, fill = TRUE)
+colnames(kpop_music_group_heights) <- c("Group", "Height")
+
+# Trying to reorder the bars like in the original plot
 kpop_music_group_heights$Group <- reorder(kpop_music_group_heights$Group, -kpop_music_group_heights$Height)
 
 plot <- ggplot(kpop_music_group_heights, aes(x = Group, y = Height, fill = Group)) +
